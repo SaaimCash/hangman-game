@@ -1,4 +1,4 @@
-# Hangman Game
+# hangman-game
 
 A polished, multi-screen Hangman game built with Python and CustomTkinter. Supports both random word mode and a custom multiplayer mode where Player 1 sets the word for Player 2 to guess.
 
