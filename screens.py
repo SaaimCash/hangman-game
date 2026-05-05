@@ -531,7 +531,7 @@ class ResultScreen(ctk.CTkFrame):
             ).pack(pady=(0, 6))
 
             # Definition
-            self._add_definition(definition)
+            self._add_definition(definition, centered=True)
 
             self._add_buttons(master)
 
@@ -578,29 +578,30 @@ class ResultScreen(ctk.CTkFrame):
 
             self._add_buttons(master)
 
-    def _add_definition(self, definition, parent=None):
+    def _add_definition(self, definition, parent=None, centered=False):
         """Render the definition label, or a fallback if unavailable."""
         parent = parent or self
-
+        anchor = "center" if centered else "w"
+        justify = "center" if centered else "left"
+ 
         if definition:
-            # Wrap long definitions — split roughly at 60 chars
             wrapped = self._wrap_text(definition, 62)
             ctk.CTkLabel(
                 parent,
                 text=wrapped,
                 font=("Arial", 15),
                 text_color="gray80",
-                justify="left",
+                justify=justify,
                 wraplength=520
-            ).pack(anchor="w", pady=(0, 10))
+            ).pack(anchor=anchor, pady=(0, 10))
         else:
             ctk.CTkLabel(
                 parent,
                 text="(definition unavailable)",
                 font=("Arial", 14),
                 text_color="gray50",
-                justify="left"
-            ).pack(anchor="w", pady=(0, 10))
+                justify=justify
+            ).pack(anchor=anchor, pady=(0, 10))
 
     @staticmethod
     def _wrap_text(text, width):
